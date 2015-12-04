@@ -32,7 +32,7 @@
 
 #include "sta321mp.h"
 
-#define STA321MP_RATES		(SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_192000)
+#define STA321MP_RATES		(SNDRV_PCM_RATE_44100 | SNDRV_PCM_RATE_176400)
 #define STA321MP_FORMAT		(SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S32_LE)
 
 static const struct reg_default sta321mp_reg_defaults[] = {
@@ -359,11 +359,11 @@ static int sta321mp_hw_params(struct snd_pcm_substream *substream,
 
   // configure the output rate
 	switch (params_rate(params)) {
-  case 192000:
+  case 176400:
     sta321mp_LP_192kHz(codec);
     fmt |= I2S_DIV_1;
     break;
-	case 48000:
+	case 44100:
     sta321mp_LP_48kHz(codec);
     fmt |= I2S_DIV_4;
 		break;
